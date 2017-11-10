@@ -26,7 +26,16 @@
                 {field: 'firstname', headerText: 'First name'},
                 {field: 'lastname', headerText: 'Last name'},
                 {field: 'email', headerText: 'Email'},
-                {field: 'phone', headerText: 'Phone'}
+                {field: 'phone', headerText: 'Phone'},
+                {
+                    headerText:'Action',
+                    headerStyle: "width:6%",
+                    content: function(rowData) {
+                        return $("<button></button>").puibutton({
+                            icon: 'ui-icon-pencil'
+                        });
+                    }}
+                
             ],
 	    globalFilter:'#filter',
             datasource: function(callback) {
