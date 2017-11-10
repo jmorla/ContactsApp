@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Contacts</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/sidebar.css" rel="stylesheet"/>
+    <style type="text/css">
+        .form-control, .btn{
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Contactos
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/dashboard/}">Dashboard</a>
+            </li>
+            <li>
+                <a th:href="@{/add/contact/}">Add contacts</a>
+            </li>
+            <li>
+                <a th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1>Add contact</h1>
+            <br/>
+            <form th:action="@{/add/contact/}" method="post" th:object="${contact}">
+                <div class="row">
+                    <div class="col-md-10">
+                        <label for="firstname">First name</label>
+                        <input id="firstname" th:field="${contact.firstname}" class="form-control"/>
+                        <label class="text-danger" th:each="err : ${#fields.errors('firstname')}" for="firstname" th:text='${err}'></label>
+                    </div>
+                    <div class="col-md-10">
+                        <label for="lastname">Last name</label>
+                        <input id="lastname" th:field="${contact.lastname}" class="form-control"/>
+                        <label class="text-danger" th:each="err : ${#fields.errors('lastname')}" for="lastname" th:text='${err}'></label>
+                    </div>
+                    <div class="col-md-10">
+                        <label for="email">Email</label>
+                        <input id="email" th:field="${contact.email}" class="form-control"/>
+                        <label class="text-danger" th:each="err : ${#fields.errors('email')}" for="email" th:text='${err}'></label>
+                     </div>
+                    <div class="col-md-10">
+                        <label for="phone">Phone</label>
+                        <input id="phone" th:field="${contact.phone}" class="form-control"/>
+                        <label class="text-danger" th:each="err : ${#fields.errors('phone')}" for="phone" th:text='${err}'></label>
+                    </div>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Contacts</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/sidebar.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Contactos
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/dashboard/}">Dashboard</a>
+            </li>
+            <li>
+                <a th:href="@{/add/contact/}">Add contacts</a>
+            </li>
+            <li>
+                <a th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1>Dashboard</h1>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody th:each="c : ${contacts}">
+                    <tr>
+                        <td th:text="${c.id}"></td>
+                        <td th:text="${c.firstname}"></td>
+                        <td th:text="${c.lastname}"></td>
+                        <td th:text="${c.email}"></td>
+                        <td th:text="${c.phone}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+</body>
+</html>
